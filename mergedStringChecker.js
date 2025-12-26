@@ -30,3 +30,5 @@ function isMerge(s, part1, part2) {
   if (strToArr.length != 0 ) return false
   else return true
 }
+
+// WRONG SOLUTION!!!!!!!!
