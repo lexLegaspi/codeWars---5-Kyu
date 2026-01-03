@@ -38,7 +38,7 @@
 // Caesar Cipher : http://en.wikipedia.org/wiki/Caesar_cipher
 
 
-// My Solution: (unfinished)
+// My Solution:
 
 var u = "I should have known that you would have a perfect answer for me!!!"
 var v = ["J vltasl rlhr ", "zdfog odxr ypw", " atasl rlhr p ", "gwkzzyq zntyhv", " lvz wp!!!"]
@@ -75,8 +75,31 @@ function movingShift(s, shift) {
 }
 
 function demovingShift(arr, shift) {
-    return "";
-}
+ let arrToString = arr.join('')
+    let result = ''
+    
+    for (let i = 0; i < arrToString.length; i++) {
+    let ch = arrToString[i];
+    let s = shift % 26;
+
+        if (ch >= 'a' && ch <= 'z') {
+          let code = ch.charCodeAt(0) - 97;
+          result += String.fromCharCode((code - s + 26) % 26 + 97);
+        } 
+        else if (ch >= 'A' && ch <= 'Z') {
+          let code = ch.charCodeAt(0) - 65;
+          result += String.fromCharCode((code - s + 26) % 26 + 65);
+        } 
+        else {
+          result += ch;
+        }
+
+        shift++;
+    }
+    
+    return result
+  }
+
 
 
 
