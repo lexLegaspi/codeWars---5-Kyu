@@ -23,3 +23,35 @@
 // Make sure not to modify the input of your function in-place, it is a bad practice.
 
 // My Solution:
+
+function mixedFraction(s){
+  //your code here
+  let int = ''
+  let numbers = s.split('/').map(x => Number(x))
+  let sign = false
+  if ((numbers[0] < 0 && numbers[1] > 0) || (numbers[1] < 0 && numbers[0] > 0) ) sign = true
+  if (numbers[1] === 0) throw "Error"
+  if (Number.isInteger(numbers[0]/numbers[1])) return String(numbers[0]/numbers[1])
+  else {
+    int=String(Math.trunc(numbers[0]/numbers[1]))
+    if(+int === 0) int = ''
+  } 
+  
+  const simplify = (num, den) => {
+    const getGCD = (a, b) => (b === 0 ? a : getGCD(b, a % b));
+    
+    const common = getGCD(Math.abs(num), Math.abs(den));
+    
+    const simpleNum = Math.abs(num / common);
+    const simpleDen = Math.abs(den / common);
+    return [simpleNum, simpleDen].join('/');
+};
+  
+ if (sign == false) {
+   return int === ''? `${String(simplify(numbers[0]%numbers[1],numbers[1]))}`:`${int} ${String(simplify(numbers[0]%numbers[1],numbers[1]))}`
+ } else {
+   return int === ''? `-${String(simplify(numbers[0]%numbers[1],numbers[1]))}`:`${int} ${String(simplify(numbers[0]%numbers[1],numbers[1]))}`
+ }
+
+}
+
